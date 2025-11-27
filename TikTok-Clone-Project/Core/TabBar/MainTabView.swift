@@ -10,8 +10,8 @@ import SwiftUI
 struct MainTabView: View {
     @State var selectedTab = 0
     var body: some View {
-        TabView{
-            Text("Feed")
+        TabView(selection: $selectedTab){
+            FeedView()
                 .tabItem{
                     VStack{
                         Image(systemName: selectedTab == 0 ? "house.fill" : "house")
@@ -22,7 +22,7 @@ struct MainTabView: View {
                 .onAppear{selectedTab = 0}
                 .tag(0)
             
-            Text("Friends")
+            ExploreView()
                 .tabItem{
                     VStack{
                         Image(systemName: selectedTab == 1 ? "person.2.fill": "person.2")
