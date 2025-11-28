@@ -6,19 +6,14 @@
 //
 
 import SwiftUI
-
+import AVKit
 struct FeedCell: View {
-    let post : Int
+    let post : Post
     var body: some View {
         
         ZStack(){
-            Rectangle()
-                .fill(.blue)
+            VideoPlayer(player: AVPlayer(url: URL(string: post.videoURL)!))
                 .containerRelativeFrame([.horizontal, .vertical])
-                .overlay{
-                    Text("Post\(post)")
-                        .foregroundColor(.white)
-                }
             VStack{
                 Spacer()
                 HStack(alignment: .bottom){
@@ -86,9 +81,6 @@ struct FeedCell: View {
                                     .resizable()
                                     .frame(width: 28, height: 28)
                                     .foregroundColor(.white)
-                                Text("27")
-                                    .font(.caption)
-                                    .foregroundColor(.white)
                             }
                         }
 
@@ -103,5 +95,5 @@ struct FeedCell: View {
 }
 
 #Preview {
-    FeedCell(post: 2)
+    FeedCell(post: Post(id: NSUUID().uuidString, videoURL: ""))
 }
